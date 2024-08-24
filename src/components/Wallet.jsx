@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Wallet = ({ walletInfo }) => {
+const Wallets = ({ walletInfo }) => {
   return (
     <div className='w-full'>
       <ul>
@@ -30,4 +30,4 @@ const Wallet = ({ walletInfo }) => {
   );
 };
 
-export default Wallet;
+export default Wallets;

@@ -2,7 +2,7 @@ import { useState } from "react";
 import { mnemonicToSeed, generateMnemonic } from "bip39";
 import { Keypair, Connection } from "@solana/web3.js";
 import { Buffer } from "buffer";
-import Wallet from '../components/Wallet'
+import Wallets from '../components/Wallet'
 const DEV_NET_URL = "https://api.devnet.solana.com";
 const connection = new Connection(DEV_NET_URL, "confirmed");
 window.Buffer = Buffer;
@@ -81,7 +81,7 @@ const Mnemonic = () => {
             </div>
           </div>
       
-          <Wallet mnemonic={mnemonic} walletInfo={walletInfo}/>
+          <Wallets mnemonic={mnemonic} walletInfo={walletInfo}/>
         </>
       )}
     </div>
