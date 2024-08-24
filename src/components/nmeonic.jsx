@@ -29,7 +29,7 @@ const Mnemonic = () => {
       const seed = await mnemonicToSeed(mnemonic);
       console.log('Seed:', seed);
 
-      // Use the seed directly for keypair
+      
       const keypair = Keypair.fromSeed(seed.slice(0, 32)); // Use only the first 32 bytes for the seed
       const walletPublicKey = keypair.publicKey.toBase58();
       console.log('Wallet Public Key:', walletPublicKey);
