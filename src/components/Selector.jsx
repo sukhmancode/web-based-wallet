@@ -10,7 +10,6 @@ const Selector = () => {
             <button className='bg-black-700 text-white px-5 py-2 text-1xl rounded-md hover:text-black-700 hover:bg-white hover:border-slate-700 border transition duration-300 ease-in-out'>
             Solana
             </button>
-
             <button className='bg-black-700 text-white px-5 py-2 text-1xl rounded-md hover:text-black-700 hover:bg-white hover:border-slate-700 border transition duration-300 ease-in-out'>
             Etherum
             </button>
