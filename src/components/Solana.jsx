@@ -36,15 +36,12 @@ const Solana = () => {
     await generateSolanaWallet(mn);
   };
 
-  const generateSolanaWallet = async (mnemonic, airdropAmount = 2) => {
+  const generateSolanaWallet = async (mnemonic) => {
     try {
       setLoading(true);
       const seed = await mnemonicToSeed(mnemonic);
       const keypair = Keypair.fromSeed(seed.slice(0, 32));
       const walletPublicKey = keypair.publicKey;
-
-      // Airdrop SOL to the new wallet
-      await airdropSOL(walletPublicKey, airdropAmount);
 
       const balance = await connection.getBalance(walletPublicKey);
 
@@ -61,30 +58,6 @@ const Solana = () => {
       setWalletInfo([...walletInfo, walletInfoObj]);
     } catch (e) {
       console.log("Error generating wallet:", e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const airdropSOL = async (publicKey, amount) => {
-    try {
-      setLoading(true);
-      const lamports = amount * 1e9;
-      const signature = await connection.requestAirdrop(publicKey, lamports);
-      await connection.confirmTransaction(signature, "confirmed");
-      console.log(`Airdropped ${amount} SOL to ${publicKey.toBase58()}`);
-
-      // Update balance in walletInfo
-      const updatedBalance = await connection.getBalance(publicKey);
-      setWalletInfo((prevWalletInfo) =>
-        prevWalletInfo.map((wallet) =>
-          wallet.walletPublicKey === publicKey.toBase58()
-            ? { ...wallet, balance: updatedBalance / 1e9 }
-            : wallet
-        )
-      );
-    } catch (error) {
-      console.error("Airdrop failed:", error);
     } finally {
       setLoading(false);
     }
@@ -253,7 +226,6 @@ const Solana = () => {
       {walletInfo.length > 0 && (
         <Wallet
           walletInfo={walletInfo}
-          airdropSOL={airdropSOL}
           openModal={openModal}
         />
       )}

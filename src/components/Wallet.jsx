@@ -1,7 +1,7 @@
 import { PublicKey } from '@solana/web3.js';
 import React from 'react';
 
-const Wallet = ({ walletInfo,openModal,airdropSOL }) => {
+const Wallet = ({ walletInfo,openModal }) => {
   return (
     <div className='w-full'>
       <ul>
@@ -28,12 +28,7 @@ const Wallet = ({ walletInfo,openModal,airdropSOL }) => {
                 className=" w-fit self-end bg-black-700 text-white font-extrabold text-black px-5 py-2 text-1xl rounded-md hover:text-black-700 hover:bg-white hover:border-slate-700 border transition duration-300 ease-in-out">
                   Send SOL
             </button> 
-            <button
-            onClick={() => airdropSOL(new PublicKey(info.walletPublicKey), 1)} // Airdrop 1 SOL
-            className="airdrop-button"
-          >
-            Airdrop 1 SOL
-          </button>
+           
           </li>
         ))}
       </ul>
